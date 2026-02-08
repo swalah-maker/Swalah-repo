@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="git.css">
+    <style>
+        .home-btn-dashboard {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: linear-gradient(135deg, #00d4ff, #0055ff);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            font-family: inherit;
+            font-size: 14px;
+        }
+
+        .home-btn-dashboard:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 212, 255, 0.4);
+        }
+
+        .dashboard-container {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            background: rgba(10, 14, 39, 0.95);
+            padding: 20px 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .dashboard-header h1 {
+            color: #00d4ff;
+            font-size: 28px;
+            animation: none;
+            background: none;
+            -webkit-text-fill-color: unset;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: white;
+        }
+
+        .user-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00d4ff, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .logout-btn {
+            background: linear-gradient(135deg, #ff006e, #ff6b6b);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 0, 110, 0.3);
+        }
+
+        .dashboard-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .stat-card h3 {
+            color: #666;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .stat-change {
+            color: #00ff00;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px;
+        }
+
+        .section h2 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 25px;
+            border-bottom: 3px solid #00d4ff;
+            padding-bottom: 15px;
+        }
+
+        .vr-worlds-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .vr-world-card {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(0, 212, 255, 0.2));
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .vr-world-card:hover {
+            transform: translateY(-5px);
+            border-color: #00d4ff;
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+        }
+
+        .vr-icon {
+            font-size: 48px;
+            margin-bottom: 12px;
+        }
+
+        .vr-world-card h3 {
+            color: #333;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .vr-world-card p {
+            color: #666;
+            font-size: 12px;
+            margin-bottom: 12px;
+        }
+
+        .btn-play {
+            background: linear-gradient(135deg, #00d4ff, #0055ff);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-play:hover {
+            transform: scale(1.05);
+        }
+
+        .activity-list {
+            list-style: none;
+        }
+
+        .activity-item {
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+        .activity-text {
+            color: #333;
+            font-size: 14px;
+        }
+
+        .activity-time {
+            color: #999;
+            font-size: 12px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #00ff00, #00d4ff);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #999;
+        }
+
+        .empty-state p {
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        /* Dashboard Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .stats-grid {
+            animation: fadeInUp 0.6s ease;
+        }
+
+        .section {
+            animation: fadeInUp 0.8s ease;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .vr-worlds-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+        }
+
+        @media (max-width: 480px) {
+            .home-btn-dashboard {
+                top: 10px;
+                left: 10px;
+                padding: 8px 14px;
+                font-size: 12px;
+            }
+
+            .dashboard-header h1 {
+                font-size: 20px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .vr-worlds-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 20px;
+            }
+        }
+    </style>
+    <title>Git Boxx - Dashboard</title>
+</head>
+<body>
+    <!-- Home Button -->
+    <button class="home-btn-dashboard" onclick="navigateToHome()">← Back to Home</button>
+
+    <div class="dashboard-container">
+        <!-- Header -->
+        <div class="dashboard-header">
+            <h1>🎮 Git Boxx Dashboard</h1>
+            <div class="user-info">
+                <div class="user-avatar" id="userAvatar">U</div>
+                <div>
+                    <div id="userName" style="font-weight: 600;">Welcome User</div>
+                    <div style="font-size: 12px; color: #999;">Premium Member</div>
+                </div>
+                <button class="logout-btn" onclick="handleLogout()">Logout</button>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="dashboard-content">
+            <!-- Stats Section -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Total Hours Played</h3>
+                    <div class="stat-number" id="hoursPlayed">42</div>
+                    <div class="stat-change">↑ 5.2% from last week</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Worlds Visited</h3>
+                    <div class="stat-number" id="worldsVisited">12</div>
+                    <div class="stat-change">3 new this month</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Achievements</h3>
+                    <div class="stat-number" id="achievements">28</div>
+                    <div class="stat-change">4 unlocked recently</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Friends Online</h3>
+                    <div class="stat-number" id="friendsOnline">7</div>
+                    <div class="stat-change">All active</div>
+                </div>
+            </div>
+
+            <!-- Available VR Worlds -->
+            <div class="section">
+                <h2>Available VR Worlds</h2>
+                <div class="vr-worlds-grid">
+                    <div class="vr-world-card" onclick="playWorld('Cyber City')">
+                        <div class="vr-icon">🏙️</div>
+                        <h3>Cyber City</h3>
+                        <p>Futuristic metropolis experience</p>
+                        <button class="btn-play" onclick="playWorld('Cyber City')">Play Now</button>
+                    </div>
+                    <div class="vr-world-card" onclick="playWorld('Enchanted Forest')">
+                        <div class="vr-icon">🌲</div>
+                        <h3>Enchanted Forest</h3>
+                        <p>Magical nature adventure</p>
+                        <button class="btn-play" onclick="playWorld('Enchanted Forest')">Play Now</button>
+                    </div>
+                    <div class="vr-world-card" onclick="playWorld('Deep Ocean')">
+                        <div class="vr-icon">🌊</div>
+                        <h3>Deep Ocean</h3>
+                        <p>Underwater exploration</p>
+                        <button class="btn-play" onclick="playWorld('Deep Ocean')">Play Now</button>
+                    </div>
+                    <div class="vr-world-card" onclick="playWorld('Space Station')">
+                        <div class="vr-icon">🚀</div>
+                        <h3>Space Station</h3>
+                        <p>Cosmic journey through stars</p>
+                        <button class="btn-play" onclick="playWorld('Space Station')">Play Now</button>
+                    </div>
+                    <div class="vr-world-card" onclick="playWorld('Ancient Egypt')">
+                        <div class="vr-icon">🏜️</div>
+                        <h3>Ancient Egypt</h3>
+                        <p>Historical civilization tour</p>
+                        <button class="btn-play" onclick="playWorld('Ancient Egypt')">Play Now</button>
+                    </div>
+                    <div class="vr-world-card" onclick="playWorld('Dragon\'s Lair')">
+                        <div class="vr-icon">🐉</div>
+                        <h3>Dragon's Lair</h3>
+                        <p>Fantasy battle arena</p>
+                        <button class="btn-play" onclick="playWorld('Dragon\'s Lair')">Play Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="section">
+                <h2>Recent Activity</h2>
+                <ul class="activity-list" id="activityList">
+                    <li class="activity-item">
+                        <div>
+                            <span class="activity-text">Completed "Explorer" achievement</span>
+                            <span class="badge">Achievement</span>
+                        </div>
+                        <span class="activity-time">2 hours ago</span>
+                    </li>
+                    <li class="activity-item">
+                        <div>
+                            <span class="activity-text">Visited Cyber City world</span>
+                            <span class="badge">World</span>
+                        </div>
+                        <span class="activity-time">5 hours ago</span>
+                    </li>
+                    <li class="activity-item">
+                        <div>
+                            <span class="activity-text">Earned 500 experience points</span>
+                            <span class="badge">XP</span>
+                        </div>
+                        <span class="activity-time">1 day ago</span>
+                    </li>
+                    <li class="activity-item">
+                        <div>
+                            <span class="activity-text">Unlocked "Master Navigator" title</span>
+                            <span class="badge">Title</span>
+                        </div>
+                        <span class="activity-time">2 days ago</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="section">
+                <h2>Quick Actions</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                    <button class="cta-button" onclick="showNotification('Profile settings opened')">Edit Profile</button>
+                    <button class="cta-button" onclick="showNotification('Friends list opened')">Manage Friends</button>
+                    <button class="cta-button" onclick="showNotification('Settings opened')">Settings</button>
+                    <button class="cta-button" onclick="showNotification('Support page opened')">Get Help</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Notification function
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.textContent = message;
+            notification.style.cssText = `
+                position: fixed;
+                top: 80px;
+                right: 20px;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white;
+                padding: 15px 25px;
+                border-radius: 8px;
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+                z-index: 10000;
+                animation: slideInRight 0.3s ease;
+                font-weight: 600;
+            `;
+            document.body.appendChild(notification);
+            setTimeout(() => notification.remove(), 3000);
+        }
+
+        // Load user data
+        function loadUserData() {
+            const user = localStorage.getItem('gitBoxxUser');
+            if (user) {
+                const userData = JSON.parse(user);
+                const email = userData.email;
+                const initials = email.substring(0, 2).toUpperCase();
+                
+                document.getElementById('userAvatar').textContent = initials;
+                document.getElementById('userName').textContent = email;
+            } else {
+                window.location.href = 'login.html';
+            }
+        }
+
+        // Play world function
+        function playWorld(worldName) {
+            showNotification(`🎮 Launching ${worldName}...`);
+            console.log(`Playing world: ${worldName}`);
+            // In a real app, this would launch the VR experience
+        }
+
+        // Logout function
+        function handleLogout() {
+            if (confirm('Are you sure you want to logout?')) {
+                localStorage.removeItem('gitBoxxUser');
+                showNotification('Logging out...');
+                setTimeout(() => {
+                    window.location.href = 'git.html';
+                }, 1500);
+            }
+        }
+
+        // Initialize on load
+        window.addEventListener('load', () => {
+            loadUserData();
+            // Animate stats numbers
+            animateCounter(document.getElementById('hoursPlayed'), 42);
+            animateCounter(document.getElementById('worldsVisited'), 12);
+            animateCounter(document.getElementById('achievements'), 28);
+            animateCounter(document.getElementById('friendsOnline'), 7);
+        });
+
+        // Counter animation
+        function animateCounter(element, target, duration = 2000) {
+            let current = 0;
+            const step = target / (duration / 16);
+            const timer = setInterval(() => {
+                current += step;
+                if (current >= target) {
+                    element.textContent = target;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current);
+                }
+            }, 16);
+        }
+    </script>
+</body>
+</html>

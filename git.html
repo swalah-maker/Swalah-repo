@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="git.css">
+    <script type="module" src="git.js"></script>
+    <title>Git Boxx</title>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo-container">
+                <svg class="logo-svg" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Outer cube/box -->
+                    <g class="logo-cube">
+                        <!-- Front face -->
+                        <rect x="10" y="15" width="25" height="25" fill="none" stroke="#00d4ff" stroke-width="2"/>
+                        <!-- Top-right cube -->
+                        <rect x="25" y="10" width="20" height="20" fill="none" stroke="#ff006e" stroke-width="2" opacity="0.7"/>
+                        <!-- Bottom-left cube -->
+                        <rect x="5" y="30" width="20" height="20" fill="none" stroke="#667eea" stroke-width="2" opacity="0.7"/>
+                    </g>
+                    <!-- Globe/world indicator -->
+                    <circle cx="22.5" cy="27.5" r="8" fill="none" stroke="#00d4ff" stroke-width="1.5"/>
+                    <path d="M 18 27.5 Q 22.5 25 27 27.5" fill="none" stroke="#00d4ff" stroke-width="1.5"/>
+                </svg>
+                <span class="logo-text">Git Boxx</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#benefits">Benefits</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="login.html" class="login-nav-btn">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <!-- Background SVG Graphics -->
+        <svg class="bg-graphics" viewBox="0 0 1200 600" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
+                    <path d="M 80 0 L 0 0 0 80" fill="none" stroke="rgba(0, 212, 255, 0.35)" stroke-width="2"/>
+                </pattern>
+            </defs>
+            <!-- Grid background -->
+            <rect width="1200" height="600" fill="url(#grid)"/>
+            <!-- Animated diagonal lines -->
+            <line x1="0" y1="0" x2="1200" y2="600" stroke="rgba(0, 255, 0, 0.3)" stroke-width="2" class="animated-line line1"/>
+            <line x1="0" y1="600" x2="1200" y2="0" stroke="rgba(255, 0, 0, 0.3)" stroke-width="2" class="animated-line line2"/>
+            <line x1="0" y1="300" x2="1200" y2="300" stroke="rgba(255, 255, 255, 0.2)" stroke-width="2" class="animated-line line3"/>
+            <line x1="600" y1="0" x2="600" y2="600" stroke="rgba(0, 0, 0, 0.25)" stroke-width="2" class="animated-line line4"/>
+            <!-- Animated triangles -->
+            <polygon points="100,100 150,200 50,200" fill="none" stroke="rgba(0, 255, 0, 0.4)" stroke-width="2" class="animated-polygon poly1"/>
+            <polygon points="1050,450 1100,550 1000,550" fill="none" stroke="rgba(255, 0, 0, 0.4)" stroke-width="2" class="animated-polygon poly2"/>
+            <polygon points="600,50 650,120 550,120" fill="none" stroke="rgba(255, 255, 255, 0.3)" stroke-width="2" class="animated-polygon poly3"/>
+            <!-- Animated dots/circles as lines -->
+            <circle cx="200" cy="150" r="4" fill="rgba(0, 255, 0, 0.5)" class="animated-dot dot1"/>
+            <circle cx="1000" cy="400" r="4" fill="rgba(255, 0, 0, 0.5)" class="animated-dot dot2"/>
+            <circle cx="600" cy="300" r="4" fill="rgba(255, 255, 255, 0.4)" class="animated-dot dot3"/>
+        </svg>
+        <h1>Git Boxx</h1>
+        <h2>The <b>globes</b> of virtual reality</h2>
+        <p class="tagline">Experience immersive worlds like never before</p>
+        <button class="cta-button" onclick="navigateToLogin()">Get Started Today</button>
+    </header>
+
+    <main>
+        <!-- Intro Section -->
+        <section class="intro">
+            <h3>Welcome to the Future</h3>
+            <p><b>Git Boxx</b> stands at the cutting edge of virtual reality technology, seamlessly blending breathtaking, lifelike graphics with intuitive, user-friendly controls to create deeply immersive experiences. By harnessing boundless imagination and innovative design, it invites users to step into richly crafted worlds built for thrilling adventures, meaningful learning, and genuine human connection—where exploration feels natural, creativity has no limits, and every moment feels vividly real.</p>
+            <p style="margin-top: 15px; text-align: center;"><a href="login.html" style="color: #00d4ff; font-weight: 600; text-decoration: none; cursor: pointer;" onclick="navigateToLogin(); return false;">→ Login to Access VR Worlds</a></p>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features" id="features">
+            <div class="section-bg-pattern"></div>
+            <h3>Core Features</h3>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🌍</div>
+                    <h4>Global Exploration</h4>
+                    <p>Visit stunning virtual landscapes from around the world and beyond, all from the comfort of your space.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎮</div>
+                    <h4>Interactive Gameplay</h4>
+                    <p>Engage with dynamic environments that respond to your actions with cutting-edge VR technology.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤝</div>
+                    <h4>Social Connection</h4>
+                    <p>Connect with friends and communities in shared virtual spaces designed for collaboration.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h4>Advanced Tech</h4>
+                    <p>Powered by next-generation graphics engines and immersive audio for total presence.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Benefits Section -->
+        <section class="benefits" id="benefits">
+            <div class="section-bg-pattern"></div>
+            <h3>Why Choose Git Boxx?</h3>
+            <div class="benefits-content">
+                <div class="benefit-item">
+                    <span class="benefit-number">1</span>
+                    <h4>Unmatched Quality</h4>
+                    <p>Enterprise-grade rendering ensures breathtaking visual fidelity in every experience.</p>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-number">2</span>
+                    <h4>Easy Integration</h4>
+                    <p>Compatible with all major VR headsets and platforms for seamless setup.</p>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-number">3</span>
+                    <h4>Content Library</h4>
+                    <p>Access thousands of experiences updated regularly with fresh content.</p>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-number">4</span>
+                    <h4>24/7 Support</h4>
+                    <p>Dedicated support team ready to assist you whenever you need help.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section class="pricing" id="pricing">
+            <div class="section-bg-pattern"></div>
+            <h3>Flexible Pricing Plans</h3>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h4>Starter</h4>
+                    <p class="price">$9.99<span>/month</span></p>
+                    <ul>
+                        <li>Access to 500+ experiences</li>
+                        <li>Standard graphics quality</li>
+                        <li>Basic support</li>
+                    </ul>
+                    <button class="plan-button">Choose Plan</button>
+                </div>
+                <div class="pricing-card featured">
+                    <h4>Professional</h4>
+                    <p class="price">$19.99<span>/month</span></p>
+                    <ul>
+                        <li>Unlimited experiences</li>
+                        <li>Ultra HD graphics</li>
+                        <li>Priority support</li>
+                        <li>Exclusive content</li>
+                    </ul>
+                    <button class="plan-button">Choose Plan</button>
+                </div>
+                <div class="pricing-card">
+                    <h4>Enterprise</h4>
+                    <p class="price">Custom<span> pricing</span></p>
+                    <ul>
+                        <li>All features included</li>
+                        <li>Custom environments</li>
+                        <li>Dedicated support team</li>
+                        <li>Volume licensing</li>
+                    </ul>
+                    <button class="plan-button">Contact Sales</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="testimonials">
+            <h3>What Users Say</h3>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="stars">★★★★★</p>
+                    <p>"Git Boxx completely changed how I experience entertainment. The immersion is unreal!"</p>
+                    <p class="author">- Alex Chen</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="stars">★★★★★</p>
+                    <p>"The best VR platform I've used. Smooth, responsive, and always adding new content."</p>
+                    <p class="author">- Jordan Martinez</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="stars">★★★★★</p>
+                    <p>"Incredible support team and amazing experiences. Highly recommended for everyone!"</p>
+                    <p class="author">- Casey Williams</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer CTA -->
+        <section class="footer-cta">
+            <h3>Ready to Enter the Metaverse?</h3>
+            <p>Join thousands of users already exploring limitless virtual worlds</p>
+            <button class="cta-button" onclick="navigateToLogin()">Start Your Free Trial</button>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h5>About Git Boxx</h5>
+                <p>Pioneering the future of virtual reality experiences since 2024.</p>
+            </div>
+            <div class="footer-section">
+                <h5>Quick Links</h5>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Support</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h5>Contact Us</h5>
+                <p>Email: info@gitboxx.com</p>
+                <p>Phone: 1-800-GITBOXX</p>
+            </div>
+            <div class="footer-section">
+                <h5>Follow Us</h5>
+                <p>Twitter | Facebook | Instagram | LinkedIn</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Git Boxx. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

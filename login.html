@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="git.css">
+    <style>
+        .login-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+
+        /* Back to home button */
+        .home-btn-login {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(10, 14, 39, 0.9);
+            color: #00d4ff;
+            border: 2px solid #00d4ff;
+            padding: 10px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.25s ease;
+            z-index: 1000;
+            text-decoration: none;
+            font-family: inherit;
+            font-size: 14px;
+        }
+
+        .home-btn-login:hover {
+            background: #00d4ff;
+            color: #0a0e27;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 212, 255, 0.3);
+        }
+
+        .login-box {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 50px 40px;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 400px;
+            backdrop-filter: blur(10px);
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .login-header h1 {
+            font-size: 32px;
+            color: #333;
+            margin-bottom: 10px;
+            background: none;
+            -webkit-text-fill-color: unset;
+            animation: none;
+        }
+
+        .login-header p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #00d4ff;
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+        }
+
+        .form-group input::placeholder {
+            color: #999;
+        }
+
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            font-size: 13px;
+        }
+
+        .remember-forgot input[type="checkbox"] {
+            width: auto;
+            margin-right: 5px;
+        }
+
+        .remember-forgot a {
+            color: #00d4ff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .remember-forgot a:hover {
+            color: #0055ff;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+        }
+
+        .login-btn:active {
+            transform: translateY(0);
+        }
+
+        .signup-link {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .signup-link a {
+            color: #00d4ff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .signup-link a:hover {
+            color: #0055ff;
+        }
+
+        .error-message {
+            background-color: #ffebee;
+            color: #c62828;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+            font-size: 13px;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .success-message {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+            font-size: 13px;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 30px 0;
+            color: #999;
+            font-size: 13px;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: #e0e0e0;
+        }
+
+        .divider span {
+            margin: 0 10px;
+        }
+
+        .social-login {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .social-btn {
+            padding: 10px;
+            border: 2px solid #e0e0e0;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .social-btn:hover {
+            border-color: #00d4ff;
+            background: rgba(0, 212, 255, 0.05);
+        }
+
+        @media (max-width: 480px) {
+            .login-box {
+                padding: 30px 20px;
+            }
+
+            .login-header h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+    <title>Git Boxx - Login</title>
+</head>
+<body>
+    <!-- Home Button -->
+    <a href="git.html" class="home-btn-login" onclick="navigateToHome(); return false;" aria-label="Back to home">← Back to Home</a>
+    <main class="login-container" role="main" aria-labelledby="loginHeading">
+        <div class="login-box" role="region" aria-labelledby="loginHeading" aria-describedby="loginDesc">
+            <header class="login-header" id="loginHeader">
+                <h1 id="loginHeading">Git Boxx</h1>
+                <p id="loginDesc">Welcome to Virtual Reality Experience</p>
+            </header>
+
+            <div id="errorMessage" class="error-message" role="status" aria-live="polite"></div>
+            <div id="successMessage" class="success-message" role="status" aria-live="polite"></div>
+
+            <!-- Social Login -->
+            <div class="social-login">
+                <button class="social-btn" onclick="loginWithGoogle()">Google</button>
+                <button class="social-btn" onclick="loginWithGithub()">GitHub</button>
+            </div>
+
+            <div class="divider"><span>or</span></div>
+
+            <!-- Login Form -->
+            <form id="loginForm" onsubmit="handleLogin(event)" role="form" aria-labelledby="loginHeading">
+                <div class="form-group">
+                    <label for="userType">Account Type</label>
+                    <select id="userType" name="userType" required aria-required="true">
+                        <option value="">Select Type</option>
+                        <option value="individual">Individual</option>
+                        <option value="enterprise">Enterprise</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" autocomplete="email" placeholder="your@email.com" required aria-required="true" autofocus>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" autocomplete="current-password" placeholder="Enter your password" required aria-required="true">
+                </div>
+
+                <div class="remember-forgot">
+                    <label>
+                        <input type="checkbox" id="remember" name="remember"> Remember me
+                    </label>
+                    <a href="#" onclick="handleForgotPassword(event)">Forgot password?</a>
+                </div>
+
+                <button type="submit" class="login-btn">Login to Git Boxx</button>
+            </form>
+
+            <div class="signup-link">
+                Don't have an account? <a href="#" onclick="handleSignUp(event)">Sign up here</a>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="git.js"></script>
+    <script>
+        // Show error message
+        function showError(message) {
+            const errorDiv = document.getElementById('errorMessage');
+            errorDiv.textContent = message;
+            errorDiv.classList.add('show');
+            setTimeout(() => errorDiv.classList.remove('show'), 5000);
+        }
+
+        // Show success message
+        function showSuccess(message) {
+            const successDiv = document.getElementById('successMessage');
+            successDiv.textContent = message;
+            successDiv.classList.add('show');
+            setTimeout(() => successDiv.classList.remove('show'), 5000);
+        }
+
+        // Handle login form submission
+        function handleLogin(event) {
+            event.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const userType = document.getElementById('userType').value;
+            const remember = document.getElementById('remember').checked;
+
+            // Basic validation
+            if (!email || !password || !userType) {
+                showError('Please fill in all fields');
+                return;
+            }
+
+            if (password.length < 6) {
+                showError('Password must be at least 6 characters');
+                return;
+            }
+
+            // Simulate login
+            console.log('Login attempt:', { email, userType, remember });
+            showSuccess('✓ Login successful! Redirecting...');
+
+            // Store user info
+            localStorage.setItem('gitBoxxUser', JSON.stringify({
+                email,
+                userType,
+                loginTime: new Date(),
+                remember
+            }));
+
+            // Redirect after 1.5 seconds
+            setTimeout(() => {
+                window.location.href = 'dashboard.html';
+            }, 1500);
+        }
+
+        // Social login handlers
+        function loginWithGoogle() {
+            console.log('Login with Google');
+            showSuccess('Connecting to Google...');
+            // In real implementation, use OAuth
+        }
+
+        function loginWithGithub() {
+            console.log('Login with GitHub');
+            showSuccess('Connecting to GitHub...');
+            // In real implementation, use OAuth
+        }
+
+        // Forgot password handler
+        function handleForgotPassword(event) {
+            event.preventDefault();
+            const email = document.getElementById('email').value;
+            if (email) {
+                showSuccess(`Recovery link sent to ${email}`);
+            } else {
+                showError('Please enter your email address');
+            }
+        }
+
+        // Sign up handler
+        function handleSignUp(event) {
+            event.preventDefault();
+            showSuccess('Redirecting to sign up page...');
+            // Could redirect to signup.html
+        }
+
+        // Check if user is already logged in
+        window.addEventListener('load', () => {
+            const user = localStorage.getItem('gitBoxxUser');
+            if (user && JSON.parse(user).remember) {
+                document.getElementById('email').value = JSON.parse(user).email;
+                document.getElementById('remember').checked = true;
+            }
+        });
+    </script>
+</body>
+</html>
